@@ -71,7 +71,8 @@ RUN addgroup --system --gid ${FOUNDRY_UID} foundry \
   sed \
   su-exec \
   tzdata \
-  && npm install && echo ${VERSION} > image_version.txt
+  && npm install && echo ${VERSION} > image_version.txt \
+  setcap CAP_NET_BIND_SERVICE=+eip /usr/local/bin/node
 
 VOLUME ["/data"]
 # HTTP Server
