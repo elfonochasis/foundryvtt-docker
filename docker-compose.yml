@@ -49,7 +49,7 @@ services:
       # - FOUNDRY_WORLD=
       # - TIMEZONE=US/Eastern
     ports:
-      - target: 80
+      - target: 30000
         published: 80
         protocol: tcp
         mode: host

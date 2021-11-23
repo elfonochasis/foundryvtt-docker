@@ -84,6 +84,6 @@ EXPOSE 80/TCP
 # EXPOSE 49152-65535/UDP
 
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["resources/app/main.js", "--port=80", "--headless", "--noupdate",\
+CMD ["resources/app/main.js", "--port=30000", "--headless", "--noupdate",\
   "--dataPath=/data"]
 HEALTHCHECK --start-period=3m --interval=30s --timeout=5s CMD ./check_health.sh
