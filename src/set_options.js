@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const DATA_PATH = "/data";
-const FOUNDRY_PORT = 30000;
+const FOUNDRY_PORT = 80;
 const LANGUAGE = "en.core";
 const MAXIMUM_PORT = 65535;
 const MINIMUM_PORT = 1;

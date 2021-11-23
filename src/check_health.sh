@@ -9,9 +9,9 @@ else
 fi
 
 if [[ "${FOUNDRY_ROUTE_PREFIX:-}" ]]; then
-  STATUS_URL="${protocol}://localhost:30000/${FOUNDRY_ROUTE_PREFIX}/api/status"
+  STATUS_URL="${protocol}://localhost/${FOUNDRY_ROUTE_PREFIX}/api/status"
 else
-  STATUS_URL="${protocol}://localhost:30000/api/status"
+  STATUS_URL="${protocol}://localhost/api/status"
 fi
 
 /usr/bin/curl --cookie-jar healthcheck-cookiejar.txt \
