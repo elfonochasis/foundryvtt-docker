@@ -1,9 +1,12 @@
 # Change these four parameters as needed
-ACI_PERS_RESOURCE_GROUP='<<ResourceGroupToCreate>>'
+FOUNDRY_USERNAME='<<YourFoundryUserName>>'
+FOUNDRY_PASSWORD='<<YourFoundryPassword>>'
+FOUNDRY_ADMIN_KEY=admin123
+ACI_PERS_RESOURCE_GROUP='FoundryVTT'
 ACI_PERS_STORAGE_ACCOUNT_NAME='<<StorageNameToCreate>>'
+ACI_NAME='<<AzureContainerInstanceToCreate>>'
 ACI_PERS_LOCATION=eastus
 ACI_PERS_SHARE_NAME=vttdata
-ACI_NAME='<<AzureContainerInstanceToCreate>>'
 
 # Create the resource group
 az group create --name $ACI_PERS_RESOURCE_GROUP --location $ACI_PERS_LOCATION
@@ -29,12 +32,12 @@ echo $STORAGE_KEY
 az container create \
     --resource-group $ACI_PERS_RESOURCE_GROUP \
     --name $ACI_NAME \
-    --image felddy/foundryvtt:release \
+    --image armyguy255a/foundryvtt:release \
     --dns-name-label $ACI_NAME \
     --azure-file-volume-account-name $ACI_PERS_STORAGE_ACCOUNT_NAME \
     --azure-file-volume-account-key $STORAGE_KEY \
     --azure-file-volume-share-name $ACI_PERS_SHARE_NAME \
     --azure-file-volume-mount-path /data \
     --environment-variables CONTAINER_CACHE=/data/cache CONTAINER_PATCHES=/data/patches \
-    --secure-environment-variables FOUNDRY_USERNAME=xxxx FOUNDRY_PASSWORD=xxxx FOUNDRY_ADMIN_KEY=admin123
+    --secure-environment-variables FOUNDRY_USERNAME=$FOUNDRY_USERNAME FOUNDRY_PASSWORD=$FOUNDRY_PASSWORD FOUNDRY_ADMIN_KEY=$FOUNDRY_ADMIN_KEY
 echo 'Azure Container Instance Created'
