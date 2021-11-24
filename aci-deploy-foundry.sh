@@ -36,7 +36,7 @@ az container create \
     --name $ACI_NAME \
     --cpu $ACI_CPU_COUNT \
     --memory $ACI_MEM_GB \
-    --port 80 \
+    --port 80 443\
     --image armyguy255a/foundryvtt:latest \
     --dns-name-label $ACI_NAME \
     --azure-file-volume-account-name $ACI_PERS_STORAGE_ACCOUNT_NAME \
