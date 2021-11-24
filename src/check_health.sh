@@ -4,14 +4,16 @@
 
 if [[ "${FOUNDRY_SSL_CERT:-}" && "${FOUNDRY_SSL_KEY:-}" ]]; then
   protocol="https"
+  port="443"
 else
   protocol="http"
+  port="80"
 fi
 
 if [[ "${FOUNDRY_ROUTE_PREFIX:-}" ]]; then
-  STATUS_URL="${protocol}://localhost:80/${FOUNDRY_ROUTE_PREFIX}/api/status"
+  STATUS_URL="${protocol}://localhost:${port}/${FOUNDRY_ROUTE_PREFIX}/api/status"
 else
-  STATUS_URL="${protocol}://localhost:80/api/status"
+  STATUS_URL="${protocol}://localhost:${port}/api/status"
 fi
 
 /usr/bin/curl --cookie-jar healthcheck-cookiejar.txt \
