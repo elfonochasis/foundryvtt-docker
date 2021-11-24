@@ -22,7 +22,7 @@ services:
       - FOUNDRY_USERNAME  # pass through
       - TIMEZONE=US/Eastern
     ports:
-      - target: 30000
+      - target: 80
         published: 80
         protocol: tcp
         mode: host

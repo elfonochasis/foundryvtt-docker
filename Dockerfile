@@ -71,8 +71,9 @@ RUN addgroup --system --gid ${FOUNDRY_UID} foundry \
   sed \
   su-exec \
   tzdata \
+  libcap \
   && npm install && echo ${VERSION} > image_version.txt \
-  setcap CAP_NET_BIND_SERVICE=+eip /usr/local/bin/node
+  && setcap CAP_NET_BIND_SERVICE=+eip /usr/local/bin/node
 
 VOLUME ["/data"]
 # HTTP Server
@@ -84,6 +85,6 @@ EXPOSE 80/TCP
 # EXPOSE 49152-65535/UDP
 
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["resources/app/main.js", "--port=30000", "--headless", "--noupdate",\
+CMD ["resources/app/main.js", "--port=80", "--headless", "--noupdate",\
   "--dataPath=/data"]
 HEALTHCHECK --start-period=3m --interval=30s --timeout=5s CMD ./check_health.sh
