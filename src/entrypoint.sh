@@ -224,8 +224,12 @@ fi
 
 # ensure the permissions are set correctly
 log "Setting data directory permissions."
-find /data -regex "${CONTAINER_PRESERVE_OWNER:-}" -prune -o -exec chown "${FOUNDRY_UID:-foundry}:${FOUNDRY_GID:-foundry}" {} +
-log_debug "Completed setting directory permissions."
+{
+  find /data -regex "${CONTAINER_PRESERVE_OWNER:-}" -prune -o -exec chown "${FOUNDRY_UID:-foundry}:${FOUNDRY_GID:-foundry}" {} +
+  log_debug "Completed setting directory permissions."
+} || {
+  log "Unable to set the data directory permissions. This could lead to an inconsistent session."
+}
 
 if [ "$1" = "--root-shell" ]; then
   log_warn "Starting a shell as requested by argument --root-shell"

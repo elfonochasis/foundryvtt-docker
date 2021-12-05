@@ -43,6 +43,6 @@ az container create \
     --azure-file-volume-account-key $STORAGE_KEY \
     --azure-file-volume-share-name $ACI_PERS_SHARE_NAME \
     --azure-file-volume-mount-path /data \
-    --environment-variables CONTAINER_CACHE=/data/cache CONTAINER_PATCHES=/data/patches \
+    --environment-variables CONTAINER_CACHE=/data/cache CONTAINER_PATCHES=/data/patches CONTAINER_PRESERVE_CONFIG=true \
     --secure-environment-variables FOUNDRY_USERNAME=$FOUNDRY_USERNAME FOUNDRY_PASSWORD=$FOUNDRY_PASSWORD FOUNDRY_ADMIN_KEY=$FOUNDRY_ADMIN_KEY
 echo 'Azure Container Instance Created'
