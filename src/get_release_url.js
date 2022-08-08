@@ -54,7 +54,7 @@ const HEADERS = {
  */
 async function fetchReleaseURL(version) {
   logger.info(`Fetching S3 pre-signed release URL for ${version}...`);
-  const release_url = `${BASE_URL}/releases/download?version=${version}&platform=linux`;
+  const release_url = `${BASE_URL}/releases/download?build=${version}&platform=linux`;
   logger.debug(`Fetching: ${release_url}`);
   const response = await fetch(release_url, {
     method: "GET",
