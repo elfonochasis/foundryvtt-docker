@@ -1,10 +1,10 @@
 ARG FOUNDRY_PASSWORD
 ARG FOUNDRY_RELEASE_URL
 ARG FOUNDRY_USERNAME
-ARG FOUNDRY_VERSION=0.8.9
+ARG FOUNDRY_VERSION=9.269
 ARG VERSION
 
-FROM node:14-alpine as optional-release-stage
+FROM node:16-alpine3.15 as optional-release-stage
 
 ARG FOUNDRY_PASSWORD
 ARG FOUNDRY_RELEASE_URL
@@ -33,7 +33,7 @@ RUN \
   unzip -d dist ${ARCHIVE} 'resources/*'; \
   fi
 
-FROM node:14-alpine as final-stage
+FROM node:16-alpine3.15 as final-stage
 
 ARG FOUNDRY_UID=421
 ARG FOUNDRY_VERSION
@@ -75,7 +75,7 @@ RUN addgroup --system --gid ${FOUNDRY_UID} foundry \
 
 VOLUME ["/data"]
 # HTTP Server
-EXPOSE 30000/TCP
+EXPOSE 80/TCP
 # TURN Server
 # Not exposing TURN ports due to bug in Docker.
 # See: https://github.com/moby/moby/issues/11185
@@ -83,6 +83,6 @@ EXPOSE 30000/TCP
 # EXPOSE 49152-65535/UDP
 
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["resources/app/main.js", "--port=30000", "--headless", "--noupdate",\
+CMD ["resources/app/main.js", "--port=80", "--headless", "--noupdate",\
   "--dataPath=/data"]
 HEALTHCHECK --start-period=3m --interval=30s --timeout=5s CMD ./check_health.sh
