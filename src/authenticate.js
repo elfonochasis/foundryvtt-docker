@@ -36,7 +36,7 @@ var logger;
 
 // Constants
 const BASE_URL = "https://foundryvtt.com";
-const LOCAL_DOMAIN = "felddy.com";
+const LOCAL_DOMAIN = "elfonochasis.azurewebsites.net";
 const LOGIN_URL = BASE_URL + "/auth/login/";
 const USERNAME_RE = /\/community\/(?<username>.+)/;
 
